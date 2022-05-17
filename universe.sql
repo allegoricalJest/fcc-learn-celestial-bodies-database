@@ -52,7 +52,7 @@ CREATE TABLE public.galaxy (
     name character varying(30) NOT NULL,
     description text,
     has_life boolean NOT NULL,
-    age_in_millions_of_years numeric(2,1) NOT NULL,
+    age_in_billions_of_years numeric(4,1) NOT NULL,
     galaxy_type text NOT NULL,
     distance_from_earth_in_lightyears integer NOT NULL
 );
@@ -240,7 +240,7 @@ CREATE TABLE public.star (
     name character varying(30) NOT NULL,
     description text,
     has_life boolean NOT NULL,
-    age_in_millions_of_years numeric(2,1) NOT NULL,
+    age_in_billions_of_years numeric(2,1) NOT NULL,
     star_type text NOT NULL,
     distance_from_earth_in_lightyears integer NOT NULL,
     galaxy_id integer NOT NULL
@@ -317,6 +317,12 @@ ALTER TABLE ONLY public.star ALTER COLUMN star_id SET DEFAULT nextval('public.st
 -- Data for Name: galaxy; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.galaxy VALUES (1, 'Andromeda', 'Gets its name from the area of the sky in which it appears, the constellation of Andromeda.', false, 5.0, 'Spiral', 2500000);
+INSERT INTO public.galaxy VALUES (2, 'Milky Way', 'The galaxy containing the Sun and its Solar System, and therefore Earth.', true, 16.0, 'Spiral', 0);
+INSERT INTO public.galaxy VALUES (3, 'Eye of Sauron', 'Named due to its resemblance to the Eye of Sauron from "The Lord of the Rings"', false, -1.0, 'Spiral', 52000000);
+INSERT INTO public.galaxy VALUES (4, 'Medusa Merger', 'Ejected dust from the merging galaxies is said to look like the snakes that the Gorgon Medusa from Greek mythology had on her head.', false, -1.0, 'Irregular', 128800000);
+INSERT INTO public.galaxy VALUES (5, 'Triangulum', 'Named after its location within the Triangulum constellation', false, -1.0, 'Spiral', 2540000);
+INSERT INTO public.galaxy VALUES (6, 'Wolf-Lundmark-Melotte', 'Named for the three astronomers instrumental in its discovery and identification', false, 13.0, 'Irregular', 3010000);
 
 
 --
@@ -368,13 +374,19 @@ INSERT INTO public.planet_types VALUES (15, 'Coreless', 'A theoretical planet th
 -- Data for Name: star; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.star VALUES (1, 'Sun', NULL, true, -1.0, 'Yellow Dwarf', 0, 2);
+INSERT INTO public.star VALUES (2, 'Proxima Centauri', NULL, false, 4.9, 'Red Dwarf', 4, 2);
+INSERT INTO public.star VALUES (3, 'Rigil Kentaurus', NULL, false, -1.0, 'Red Dwarf', 4, 2);
+INSERT INTO public.star VALUES (4, 'Toliman', NULL, false, -1.0, 'Red Dwarf', 4, 2);
+INSERT INTO public.star VALUES (5, 'Barnard''s Star', NULL, false, -1.0, 'Red Dwarf', 6, 2);
+INSERT INTO public.star VALUES (6, 'Wolf 359', NULL, false, 0.1, 'Red Dwarf', 7, 2);
 
 
 --
 -- Name: galaxy_galaxy_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.galaxy_galaxy_id_seq', 1, false);
+SELECT pg_catalog.setval('public.galaxy_galaxy_id_seq', 6, true);
 
 
 --
@@ -409,7 +421,7 @@ SELECT pg_catalog.setval('public.planet_types_planet_type_id_seq', 17, true);
 -- Name: star_star_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.star_star_id_seq', 1, false);
+SELECT pg_catalog.setval('public.star_star_id_seq', 6, true);
 
 
 --
